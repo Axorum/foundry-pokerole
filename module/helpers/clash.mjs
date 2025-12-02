@@ -43,7 +43,7 @@ export async function showClashDialog(actor, actorToken, attacker, attackingMove
 
   let defaultPainPenalty = actor.system.painPenalty ?? 'none';
 
-  const content = await renderTemplate(CLASH_DIALOGUE_TEMPLATE, {
+  const content = await foundry.applications.handlebars.renderTemplate(CLASH_DIALOGUE_TEMPLATE, {
     moves,
     painPenalty: defaultPainPenalty,
     painPenalties: getLocalizedPainPenaltiesForSelect(),
@@ -68,7 +68,7 @@ export async function showClashDialog(actor, actorToken, attacker, attackingMove
   if (!result) return undefined;
 
   const formElement = result[0].querySelector('form');
-  let { moveId, painPenalty, poolBonus, constantBonus, confusionPenalty } = new FormDataExtended(formElement).object;
+  let { moveId, painPenalty, poolBonus, constantBonus, confusionPenalty } = new foundry.applications.ux.FormDataExtended(formElement).object;
   constantBonus ??= 0;
   if (confusionPenalty) {
     constantBonus--;
