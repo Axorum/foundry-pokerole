@@ -353,8 +353,17 @@ export class PokeroleItem extends Item {
    * @param {HTML} html  Rendered chat message.
    */
   static chatListeners(html) {
-    $(html).on("click", ".card-buttons button", this._onChatCardAction.bind(this));
-    $(html).on("click", ".item-name", this._onChatCardToggleContent.bind(this));
+	var buttons = html.querySelectorAll(".card-buttons button");
+	for(var i = 0 ; i < buttons.length; i++)
+	{
+		buttons[i].addEventListener("click", this._onChatCardAction.bind(this));
+	}
+
+	var itemNames = html.querySelectorAll(".item-name");
+	for(var i = 0 ; i < itemNames.length; i++)
+	{
+		itemNames[i].addEventListener("click", this._onChatCardToggleContent.bind(this));
+	}
   }
 
     /* -------------------------------------------- */

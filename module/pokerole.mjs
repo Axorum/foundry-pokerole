@@ -69,8 +69,7 @@ Hooks.once("ready", async function () {
 });
 
 // Chat message hooks
-Hooks.on('renderChatLog', (app, html, data) => PokeroleItem.chatListeners(html));
-Hooks.on('renderChatPopout', (app, html, data) => PokeroleItem.chatListeners(html));
+Hooks.on('renderChatMessageHTML', (app, html, data) => PokeroleItem.chatListeners(html));
 
 PokeroleCombatTracker.registerHooks();
 registerIntegrationHooks();

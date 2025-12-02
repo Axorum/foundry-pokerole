@@ -244,7 +244,7 @@ export async function addAilmentWithDialog(actor, category) {
         moves[move.uuid] = move.name;
       }
 
-      const content = await renderTemplate(DISABLE_MOVE_DIALOG_TEMPLATE, {
+      const content = await foundry.applications.handlebars.renderTemplate(DISABLE_MOVE_DIALOG_TEMPLATE, {
         moves
       });
       const result = await new Promise(resolve => {
@@ -268,7 +268,7 @@ export async function addAilmentWithDialog(actor, category) {
 
       if (!result) return undefined;
       const formElement = result[0].querySelector('form');
-      const { moveUuid } = new FormDataExtended(formElement).object;
+      const { moveUuid } = new foundry.applications.ux.FormDataExtended(formElement).object;
       options.moveUuid = moveUuid;
 
       break;
